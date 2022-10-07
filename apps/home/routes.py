@@ -14,7 +14,9 @@ from apps.home.models import API_TOKEN as ak
 @blueprint.route('/index')
 @login_required
 def index():
-    return render_template('home/index.html', segment='index')
+    name = ak.query.order_by(ak.name)
+    count = [i.name for i in name]
+    return render_template('home/index.html', segment='home', name=name, count=count)
 
 # Settings Page
 class SettingsPage():
