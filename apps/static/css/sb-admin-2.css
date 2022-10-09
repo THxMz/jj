@@ -11282,3 +11282,6 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+.my-class .bar {
+  background:#e60101;
+}

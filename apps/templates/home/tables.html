@@ -3,8 +3,7 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Working</h1>
-    <p class="mb-4">รายละเอียด <a target="_blank"
-            href="#">Link</a>.</p>
+    <p class="mb-4">รายละเอียด <a href="#">Link</a>.</p>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -18,7 +17,6 @@
                         <tr>
                             <th>ชื่อแคมเปญ(โฆษณา)</th>
                             <th>สถานะการทำงาน</th>
-                            <th>งบประมาณ</th>
                             <th>ผลลัพธ์</th>
                             <th>การเข้าถึง</th>
                             <th>ต้นทุนผลลัพธ์</th>
@@ -28,18 +26,17 @@
                             <th>เวลาอัพเดท</th>
                         </tr>
                     </thead>
-                    {% for i in name %}
+                    {% for a in api %}
                     <tbody>
                         <tr>
-                            <td>{{i.name}}</td>
-                            <td>ยังไม่มีข้อมูล</td>
-                            <td>ยังไม่มีข้อมูล</td>
-                            <td>ยังไม่มีข้อมูล</td>
-                            <td>ยังไม่มีข้อมูล</td>
-                            <td>ยังไม่มีข้อมูล</td>
-                            <td>ยังไม่มีข้อมูล</td>
-                            <td>ยังไม่มีข้อมูล</td>
-                            <td>ยังไม่มีข้อมูล</td>
+                            <td>{{ a['account_name'] }}</td>
+                            <td>{{ a['status'][0]['status'] }}</td>
+                            <td>{{ a['once_click'] }}</td>
+                            <td>{{ a['reach'] }}</td>
+                            <td>${{ a['cost'] }}</td>
+                            <td>${{ a['spend'] }}</td>
+                            <td>{{ a['ctr'] }}%</td>
+                            <td>{{ a['once_click'] }}</td>
                             <td>ยังไม่มีข้อมูล</td>
                         </tr>
                     </tbody>

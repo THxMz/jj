@@ -1,2 +1,8 @@
 pp/
 .vercel
+push.py
+__pycache__/
+play_g.py
+*_g.py
+db.sqlite3
+id_ads/

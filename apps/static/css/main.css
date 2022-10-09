@@ -488,6 +488,8 @@ iframe {
     opacity: 1;
   }
 }
-
+.my-class .bar {
+  background:#e60101;
+}
 
 

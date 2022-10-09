@@ -1,12 +1,21 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} List API KEYS {% endblock title %}
+
+{% block content %}
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+        <h1 class="h3 mb-0 text-gray-800">Link Details</h1>
     </div>
+    {% if msg %}
+    <div class="alert alert-warning" role="alert">
+        Delete {{ msg }} successfully!
+      </div>
+    {% endif %}
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -15,8 +24,8 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Token name</th>
-                            <th>Created on</th>
+                            <th>Url name</th>
+                            <th>Descriptions</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -24,11 +33,11 @@
                     <tbody>
                         <tr>
                             <td>{{ names.name }}</td>
-                            <td>-</td>
+                            <td>{{ names.app_id }}</td>
                             <td>
-                                <form action="{{ url_for('home_blueprint.details', n=names.name) }}" method="post">
-                                    <input type="hidden" value="{{ names.name }}" name="details">
-                                    <button type="submit" name="submit" class="btn btn-outline-primary">Detail</button>
+                                <form action="{{ url_for('home_blueprint.list_keys') }}" method="post">
+                                    <input type="hidden" value="{{ names.name }}" name="delete">
+                                    <button type="submit" name="submit" class="btn btn-outline-danger">Delete</button>
                                 </form>
                             </td>
                             </tr>
@@ -40,3 +49,5 @@
     </div>
 
 </div>
+
+{% endblock content %}

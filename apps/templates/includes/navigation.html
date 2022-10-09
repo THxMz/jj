@@ -31,13 +31,14 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Panel</span>
+                    <i class="fas fa-fw fa-link"></i>
+                    <span>Links</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Panel:</h6>
-                        <a class="collapse-item" href="{{ url_for('authentication_blueprint.route_default') }}">Buttons1</a>
+                        <h6 class="collapse-header">Links:</h6>
+                        <a class="collapse-item" href="{{ url_for('home_blueprint.link_details') }}">All Link</a>
+                        <a class="collapse-item" href="{{ url_for('home_blueprint.link_details') }}">Link Config</a>
                     </div>
                 </div>
             </li>
@@ -60,7 +61,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ url_for('authentication_blueprint.logout') }}">
-                    <i class="fa fa-sign-in"></i>
+                    <i class='fas fa-sign-out-alt'></i>
                     <span>Logout</span>
                 </a>
             </li>

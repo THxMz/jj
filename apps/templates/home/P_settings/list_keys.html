@@ -8,7 +8,9 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">List Campaign keys</h1>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Settings token keys</h1>
+    </div>
     {% if msg %}
     <div class="alert alert-warning" role="alert">
         Delete {{ msg }} successfully!
@@ -22,8 +24,10 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Campaign Name</th>
-                            <th>API KEYS</th>
+                            <th>Token Name</th>
+                            <th>App ID</th>
+                            <th>App Secret</th>
+                            <th>Access Token</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -31,10 +35,12 @@
                     <tbody>
                         <tr>
                             <td>{{ names.name }}</td>
-                            <td>{{ names.token }}</td>
+                            <td>{{ names.app_id }}</td>
+                            <td>{{ names.app_secret[:10] }} ... {{ names.app_secret[-10:] }} </td>
+                            <td>{{ names.token[:10] }} ... {{ names.token[-10:] }}</td>
                             <td>
                                 <form action="{{ url_for('home_blueprint.list_keys') }}" method="post">
-                                    <input type="hidden" value="{{ names.name }}" name="post_to_delete">
+                                    <input type="hidden" value="{{ names.name }}" name="delete">
                                     <button type="submit" name="submit" class="btn btn-outline-danger">Delete</button>
                                 </form>
                             </td>

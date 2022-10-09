@@ -13,7 +13,9 @@ class API_TOKEN(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True)
-    token = db.Column(db.String(64), unique=True)
+    app_id = db.Column(db.String(64), unique=True)
+    app_secret = db.Column(db.String(64), unique=True)
+    token = db.Column(db.String(300), unique=True)
 
     def __init__(self, **kwargs):
         for property, value in kwargs.items():

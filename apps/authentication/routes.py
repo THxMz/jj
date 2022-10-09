@@ -33,7 +33,6 @@ def login():
         # read form data
         email = request.form['email']
         password = request.form['pass']
-        print(email, password)
 
         # Locate user
         user = Users.query.filter_by(email=email).first()
@@ -52,6 +51,7 @@ def login():
     if not current_user.is_authenticated:
         return render_template('accounts/login.html',
                                form=login_form)
+                               
     return redirect(url_for('home_blueprint.index'))
 
 
@@ -64,7 +64,7 @@ def logout():
 
 @login_manager.unauthorized_handler
 def unauthorized_handler():
-    return render_template('home/403.html'), 403
+    return redirect(url_for('authentication_blueprint.login'))
 
 
 @blueprint.errorhandler(403)
