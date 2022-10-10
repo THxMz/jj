@@ -90,8 +90,10 @@ class DetailPage:
         name = ak.query.order_by(ak.name)
         count = api
         status = [s['status'][0] for s in api]
-        print(status)
         date = datetime.now().strftime("%d/%m/%y - %H:%M:%S %p")
+        if 'refresh' in request.form:
+            return render_template("home/detail.html", name=name, count=count, api=api, date=date)
+
         return render_template("home/detail.html", name=name, count=count, api=api, date=date)
 
 class LinksPage:
@@ -100,7 +102,10 @@ class LinksPage:
     @login_required
     def link_details() -> None:
         if 'submit' in request.form:
-            print("Yes")
+            msg = request.form['delete']
+            usr = url.query.filter_by(url_name=msg).one()
+            db.session.delete(usr)
+            db.session.commit()
         links = url.query.order_by(url.url_str)
         return render_template('home/P_links/link_details.html', links=links)
 

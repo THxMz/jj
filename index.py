@@ -9,6 +9,7 @@ from decouple import config
 
 from apps.config import config_dict
 from apps import create_app, db
+from apps.apis.ty_api2 import get_result_from_api
 
 # WARNING: Don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
@@ -26,6 +27,7 @@ except KeyError:
 
 app = create_app(app_config)
 Migrate(app, db)
+get_result_from_api('Test1')
 
 if DEBUG:
     app.logger.info('DEBUG       = ' + str(DEBUG))
