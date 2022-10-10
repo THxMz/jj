@@ -3,6 +3,6 @@ pp/
 __pycache__/
 play_g.py
 *_g.py
+push.py
 db.sqlite3
 id_ads/
-push.py
