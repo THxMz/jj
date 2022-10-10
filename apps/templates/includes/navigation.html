@@ -38,7 +38,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Links:</h6>
                         <a class="collapse-item" href="{{ url_for('home_blueprint.link_details') }}">All Link</a>
-                        <a class="collapse-item" href="{{ url_for('home_blueprint.link_details') }}">Link Config</a>
+                        <a class="collapse-item" href="{{ url_for('home_blueprint.add_link') }}">Link Config</a>
                     </div>
                 </div>
             </li>
@@ -54,8 +54,9 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Setting:</h6>
-                        <a class="collapse-item" href="{{ url_for('home_blueprint.api_keys') }}">API KEYS</a>
                         <a class="collapse-item" href="{{ url_for('home_blueprint.list_keys') }}">List API KEYS</a>
+                        <a class="collapse-item" href="{{ url_for('home_blueprint.api_keys') }}">API KEYS</a>
+                        <!-- <a class="collapse-item" href="{{ url_for('home_blueprint.list_keys') }}">Renew Token</a> -->
                     </div>
                 </div>
             </li>

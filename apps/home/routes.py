@@ -3,6 +3,8 @@
 Copyright (c) 2022 | TYLER
 """
 
+from datetime import datetime
+
 from flask import render_template, request, url_for, redirect
 from flask_login import login_required
 from jinja2 import TemplateNotFound
@@ -12,6 +14,7 @@ from apps.apis.utils import get_act_id, save_act_id
 from apps.apis.ty_api import get_result_from_api
 from apps.home import blueprint
 from apps.home.models import API_TOKEN as ak
+from apps.home.models import URL_SETTING as url
 
 @blueprint.route('/dashboard', methods=['GET', 'POST'])
 @login_required
@@ -85,16 +88,40 @@ class DetailPage:
     def details(n) -> None:
         api = get_result_from_api(name=n, date='today')
         name = ak.query.order_by(ak.name)
-        count = get_act_id(n)
-        return render_template("home/detail.html", name=name, count=count, api=api)
+        count = api
+        status = [s['status'][0] for s in api]
+        print(status)
+        date = datetime.now().strftime("%d/%m/%y - %H:%M:%S %p")
+        return render_template("home/detail.html", name=name, count=count, api=api, date=date)
 
 class LinksPage:
 
     @blueprint.route('/links/link_details', methods=['GET', 'POST'])
     @login_required
     def link_details() -> None:
+        if 'submit' in request.form:
+            print("Yes")
+        links = url.query.order_by(url.url_str)
+        return render_template('home/P_links/link_details.html', links=links)
 
-        return render_template('home/P_links/link_details.html')
+    @blueprint.route('/links/add_link', methods=['GET', 'POST'])
+    @login_required
+    def add_link() -> None:
+        if "submit" in request.form:
+            url_name = request.form['url_name']
+
+            value = url.query.filter_by(url_name=url_name).first()
+            if value:
+                return render_template('home/P_links/add_link.html', msg="This url name is already exists.", success=False)
+
+            # Record to databases
+            value = url(**request.form)
+            db.session.add(value)
+            db.session.commit()
+
+            return render_template('home/P_links/add_link.html', msg=f"{request.form['url_name']}", success=True)
+
+        return render_template('home/P_links/add_link.html')
         
 
 @blueprint.route('<template>')

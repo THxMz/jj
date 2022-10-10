@@ -29,20 +29,21 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    {% for names in name %}
+                    {% for ls in links %}
                     <tbody>
                         <tr>
-                            <td>{{ names.name }}</td>
-                            <td>{{ names.app_id }}</td>
+                            <td>{{ ls.url_name }}</td>
+                            <td>{{ ls.url_desc }}</td>
                             <td>
-                                <form action="{{ url_for('home_blueprint.list_keys') }}" method="post">
-                                    <input type="hidden" value="{{ names.name }}" name="delete">
-                                    <button type="submit" name="submit" class="btn btn-outline-danger">Delete</button>
+                                <form action="" method="post">
+                                <input type="hidden" value="{{ ls.url_name }}" name="delete">
+                                <a class="btn btn-outline-primary" href="{{ ls.url_str }}" target="_blank">Open</a>
+                                <button type="submit" name="submit" class="btn btn-outline-danger">Delete</button>
                                 </form>
                             </td>
-                            </tr>
-                        </tbody>
-                        {% endfor %}
+                        </tr>
+                    </tbody>
+                    {%  endfor %}
                 </table>
             </div>
         </div>
